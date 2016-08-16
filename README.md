@@ -1,2 +1,2 @@
-# vue-timer
-A timer design using Vue.
+# react-timer
+A timer design using React.
