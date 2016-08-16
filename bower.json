@@ -1,0 +1,24 @@
+{
+  "name": "react-timer",
+  "description": "A timer design using React.",
+  "main": "index.js",
+  "authors": [
+    "DZ (Slyphony)"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "https://github.com/Sylphony/react-timer#readme",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css",
+    "react": "https://npmcdn.com/react@15.3.0/dist/react.js",
+    "react-dom": "https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"
+  }
+}

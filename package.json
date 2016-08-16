@@ -1,0 +1,28 @@
+{
+  "name": "react-timer",
+  "version": "0.0.0",
+  "description": "A timer design using React.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-watch": "watchify src/app/app.js -t babelify -o src/app/build.js -v"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sylphony/react-timer.git"
+  },
+  "author": "DZ (Slyphony)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sylphony/react-timer/issues"
+  },
+  "homepage": "https://github.com/Sylphony/react-timer#readme",
+  "devDependencies": {
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-es2016": "^6.11.1",
+    "babelify": "^7.3.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-sass": "^2.2.0"
+  }
+}
