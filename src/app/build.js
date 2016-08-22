@@ -33,6 +33,7 @@ var Timer = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Timer).call(this, state));
 
         _this.state = {
+            hours: 0,
             minutes: 0,
             seconds: 0
         };
@@ -56,6 +57,16 @@ var Timer = function (_React$Component) {
                     React.createElement(
                         "span",
                         { className: "timer__digit" },
+                        this.addLeadingZeroes(this.state.hours)
+                    ),
+                    React.createElement(
+                        "span",
+                        { className: "timer__separator" },
+                        ":"
+                    ),
+                    React.createElement(
+                        "span",
+                        { className: "timer__digit" },
                         this.addLeadingZeroes(this.state.minutes)
                     ),
                     React.createElement(
@@ -71,12 +82,12 @@ var Timer = function (_React$Component) {
                 ),
                 React.createElement(
                     "button",
-                    { className: "btn timer__btn timer__btn--start", onClick: this.start.bind(this) },
+                    { className: "btn btn-success timer__btn timer__btn--start", onClick: this.start.bind(this) },
                     "Start"
                 ),
                 React.createElement(
                     "button",
-                    { className: "btn timer__btn timer__btn--stop", onClick: this.stop.bind(this) },
+                    { className: "btn btn-danger timer__btn timer__btn--stop", onClick: this.stop.bind(this) },
                     "Stop"
                 )
             );
@@ -87,6 +98,7 @@ var Timer = function (_React$Component) {
             var _this2 = this;
 
             var secsPerMin = 60;
+            var minsPerHour = 60;
 
             var timer = setInterval(function () {
                 _this2.setState({
@@ -97,6 +109,14 @@ var Timer = function (_React$Component) {
                     _this2.setState({
                         seconds: 0,
                         minutes: _this2.state.minutes + 1
+                    });
+                }
+
+                if (_this2.state.minutes === minsPerHour) {
+                    _this2.setState({
+                        seconds: 0,
+                        minutes: 0,
+                        hours: _this2.state.hours + 1
                     });
                 }
             }, 1000);

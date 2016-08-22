@@ -3,6 +3,7 @@ class Timer extends React.Component {
         super(state);
 
         this.state = {
+            hours: 0,
             minutes: 0,
             seconds: 0
         };
@@ -16,19 +17,22 @@ class Timer extends React.Component {
         return (
             <div className="timer">
                 <div className="timer__inner">
+                    <span className="timer__digit">{ this.addLeadingZeroes(this.state.hours) }</span>
+                    <span className="timer__separator">:</span>
                     <span className="timer__digit">{ this.addLeadingZeroes(this.state.minutes) }</span>
                     <span className="timer__separator">:</span>
                     <span className="timer__digit">{ this.addLeadingZeroes(this.state.seconds) }</span>
                 </div>
 
-                <button className="btn timer__btn timer__btn--start" onClick={ this.start.bind(this) }>Start</button>
-                <button className="btn timer__btn timer__btn--stop" onClick={ this.stop.bind(this) }>Stop</button>
+                <button className="btn btn-success timer__btn timer__btn--start" onClick={ this.start.bind(this) }>Start</button>
+                <button className="btn btn-danger timer__btn timer__btn--stop" onClick={ this.stop.bind(this) }>Stop</button>
             </div>
         );
     }
 
     start() {
         const secsPerMin = 60;
+        const minsPerHour = 60;
 
         let timer = setInterval(() => {
             this.setState({
@@ -40,6 +44,14 @@ class Timer extends React.Component {
                     seconds: 0,
                     minutes: this.state.minutes + 1
                 });     
+            }
+
+            if (this.state.minutes === minsPerHour) {
+                this.setState({ 
+                    seconds: 0,
+                    minutes: 0,
+                    hours: this.state.hours + 1
+                });  
             }
         }, 1000);
 
