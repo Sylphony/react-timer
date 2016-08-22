@@ -68,6 +68,7 @@ class Timer extends React.Component {
         this.stop();
 
         this.setState({
+            hours: 0,
             seconds: 0,
             minutes: 0
         });
