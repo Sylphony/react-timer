@@ -1,0 +1,11 @@
+@import "variables/all";
+
+html {
+    font-size:16px;
+}
+
+button {
+    border:1px solid map-get($colors, gray);
+
+    background-color:transparent;
+}

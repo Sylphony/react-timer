@@ -82,13 +82,18 @@ var Timer = function (_React$Component) {
                 ),
                 React.createElement(
                     "button",
-                    { className: "btn btn-success timer__btn timer__btn--start", onClick: this.start.bind(this) },
+                    { className: "timer__btn timer__btn--start", onClick: this.start.bind(this) },
                     "Start"
                 ),
                 React.createElement(
                     "button",
-                    { className: "btn btn-danger timer__btn timer__btn--stop", onClick: this.stop.bind(this) },
+                    { className: "timer__btn timer__btn--stop", onClick: this.stop.bind(this) },
                     "Stop"
+                ),
+                React.createElement(
+                    "button",
+                    { className: "timer__btn timer__btn--reset", onClick: this.reset.bind(this) },
+                    "Reset"
                 )
             );
         }
@@ -107,16 +112,16 @@ var Timer = function (_React$Component) {
 
                 if (_this2.state.seconds === secsPerMin) {
                     _this2.setState({
-                        seconds: 0,
-                        minutes: _this2.state.minutes + 1
+                        minutes: _this2.state.minutes + 1,
+                        seconds: 0
                     });
                 }
 
                 if (_this2.state.minutes === minsPerHour) {
                     _this2.setState({
-                        seconds: 0,
+                        hours: _this2.state.hours + 1,
                         minutes: 0,
-                        hours: _this2.state.hours + 1
+                        seconds: 0
                     });
                 }
             }, 1000);
@@ -136,8 +141,9 @@ var Timer = function (_React$Component) {
             this.stop();
 
             this.setState({
-                seconds: 0,
-                minutes: 0
+                hours: 0,
+                minutes: 0,
+                seconds: 0
             });
         }
     }, {

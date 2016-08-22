@@ -24,8 +24,9 @@ class Timer extends React.Component {
                     <span className="timer__digit">{ this.addLeadingZeroes(this.state.seconds) }</span>
                 </div>
 
-                <button className="btn btn-success timer__btn timer__btn--start" onClick={ this.start.bind(this) }>Start</button>
-                <button className="btn btn-danger timer__btn timer__btn--stop" onClick={ this.stop.bind(this) }>Stop</button>
+                <button className="timer__btn timer__btn--start" onClick={ this.start.bind(this) }>Start</button>
+                <button className="timer__btn timer__btn--stop" onClick={ this.stop.bind(this) }>Stop</button>
+                <button className="timer__btn timer__btn--reset" onClick={ this.reset.bind(this) }>Reset</button>
             </div>
         );
     }
@@ -41,16 +42,16 @@ class Timer extends React.Component {
 
             if (this.state.seconds === secsPerMin) {
                 this.setState({ 
-                    seconds: 0,
-                    minutes: this.state.minutes + 1
+                    minutes: this.state.minutes + 1,
+                    seconds: 0
                 });     
             }
 
             if (this.state.minutes === minsPerHour) {
                 this.setState({ 
-                    seconds: 0,
+                    hours: this.state.hours + 1,
                     minutes: 0,
-                    hours: this.state.hours + 1
+                    seconds: 0
                 });  
             }
         }, 1000);
@@ -69,8 +70,8 @@ class Timer extends React.Component {
 
         this.setState({
             hours: 0,
-            seconds: 0,
-            minutes: 0
+            minutes: 0,
+            seconds: 0
         });
     }
 

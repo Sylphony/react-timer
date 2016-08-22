@@ -1,0 +1,38 @@
+html {
+  font-size: 16px;
+}
+
+button {
+  border: 1px solid #AEAEAE;
+  background-color: transparent;
+}
+
+.timer {
+  width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.timer__inner {
+  color: #AEAEAE;
+  font-size: 5rem;
+}
+
+.timer__btn {
+  float: left;
+  width: calc(100% / 3);
+  padding: 10px;
+}
+
+.timer__btn:not(:first-of-type) {
+  border-left: 0;
+}
+
+.timer__btn:not(:disabled):hover {
+  color: #FFF;
+  background-color: #AEAEAE;
+}
+
+.timer__btn:disabled {
+  color: #e1e1e1;
+}

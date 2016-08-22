@@ -1,0 +1,33 @@
+@import "../base/variables/all";
+
+.timer {
+    width:500px;
+    margin:0 auto;
+
+    text-align:center;
+
+    &__inner {
+        color:map-get($colors, gray);
+        font-size:map-get($font-sizes, xlarge);
+    }
+
+    &__btn {
+        float:left;
+
+        width:calc(100% / 3);
+        padding:10px;
+
+        &:not(:first-of-type) {
+            border-left:0;
+        }
+
+        &:not(:disabled):hover {
+            color:map-get($colors, white);
+            background-color:map-get($colors, gray);
+        }
+
+        &:disabled {
+            color:map-get($colors, gray-light);
+        }
+    }
+}
