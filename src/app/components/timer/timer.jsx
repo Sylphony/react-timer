@@ -16,7 +16,7 @@ class Timer extends React.Component {
     render() {
         return (
             <div className="timer">
-                <div className="timer__inner">
+                <div className="timer__wrapper">
                     <span className="timer__digit">{ this.addLeadingZeroes(this.state.hours) }</span>
                     <span className="timer__separator">:</span>
                     <span className="timer__digit">{ this.addLeadingZeroes(this.state.minutes) }</span>
@@ -24,9 +24,20 @@ class Timer extends React.Component {
                     <span className="timer__digit">{ this.addLeadingZeroes(this.state.seconds) }</span>
                 </div>
 
-                <button className="timer__btn timer__btn--start" onClick={ this.start.bind(this) }>Start</button>
-                <button className="timer__btn timer__btn--stop" onClick={ this.stop.bind(this) }>Stop</button>
-                <button className="timer__btn timer__btn--reset" onClick={ this.reset.bind(this) }>Reset</button>
+                <div className="timer__controls">
+                    <button className="timer__btn timer__btn--start" onClick={ this.start.bind(this) }>
+                        <span className="timer__btn-icon fa fa-play"></span>
+                        <span className="timer__btn-text">Start</span>
+                    </button>
+                    <button className="timer__btn timer__btn--stop" onClick={ this.stop.bind(this) }>
+                        <span className="timer__btn-icon fa fa-stop"></span>
+                        <span className="timer__btn-text">Stop</span>
+                    </button>
+                    <button className="timer__btn timer__btn--reset" onClick={ this.reset.bind(this) }>
+                        <span className="timer__btn-icon fa fa-refresh"></span>
+                        <span className="timer__btn-text">Reset</span>
+                    </button>
+                </div>
             </div>
         );
     }

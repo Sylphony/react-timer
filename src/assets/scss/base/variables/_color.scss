@@ -1,5 +1,10 @@
+// Base colors
+$gray: #AEAEAE;
+$white: #FFF;
+
+// Map
 $colors: (
-    gray: #AEAEAE,
-    gray-light: lighten(#AEAEAE, 20%),
-    white: #FFF
+    gray: $gray,
+    gray-light: lighten($gray, 20%),
+    white: $white
 );

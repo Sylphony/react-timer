@@ -53,7 +53,7 @@ var Timer = function (_React$Component) {
                 { className: "timer" },
                 React.createElement(
                     "div",
-                    { className: "timer__inner" },
+                    { className: "timer__wrapper" },
                     React.createElement(
                         "span",
                         { className: "timer__digit" },
@@ -81,19 +81,38 @@ var Timer = function (_React$Component) {
                     )
                 ),
                 React.createElement(
-                    "button",
-                    { className: "timer__btn timer__btn--start", onClick: this.start.bind(this) },
-                    "Start"
-                ),
-                React.createElement(
-                    "button",
-                    { className: "timer__btn timer__btn--stop", onClick: this.stop.bind(this) },
-                    "Stop"
-                ),
-                React.createElement(
-                    "button",
-                    { className: "timer__btn timer__btn--reset", onClick: this.reset.bind(this) },
-                    "Reset"
+                    "div",
+                    { className: "timer__controls" },
+                    React.createElement(
+                        "button",
+                        { className: "timer__btn timer__btn--start", onClick: this.start.bind(this) },
+                        React.createElement("span", { className: "timer__btn-icon fa fa-play" }),
+                        React.createElement(
+                            "span",
+                            { className: "timer__btn-text" },
+                            "Start"
+                        )
+                    ),
+                    React.createElement(
+                        "button",
+                        { className: "timer__btn timer__btn--stop", onClick: this.stop.bind(this) },
+                        React.createElement("span", { className: "timer__btn-icon fa fa-stop" }),
+                        React.createElement(
+                            "span",
+                            { className: "timer__btn-text" },
+                            "Stop"
+                        )
+                    ),
+                    React.createElement(
+                        "button",
+                        { className: "timer__btn timer__btn--reset", onClick: this.reset.bind(this) },
+                        React.createElement("span", { className: "timer__btn-icon fa fa-refresh" }),
+                        React.createElement(
+                            "span",
+                            { className: "timer__btn-text" },
+                            "Reset"
+                        )
+                    )
                 )
             );
         }

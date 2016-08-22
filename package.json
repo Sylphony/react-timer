@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-watch": "watchify src/app/app.js -t babelify -o src/app/build.js -v"
+    "browserify": "browserify src/app/app.jsx -t babelify -o src/app/build.js",
+    "watchify": "watchify src/app/app.jsx -t babelify -o src/app/build.js -v"
   },
   "repository": {
     "type": "git",
