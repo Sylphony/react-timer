@@ -36,10 +36,6 @@ var Timer = function (_React$Component) {
             minutes: 0,
             seconds: 0
         };
-
-        // When using ES6 classes, React does not auto-bind so have to manually do it.
-        _this.start = _this.start.bind(_this);
-        _this.stop = _this.stop.bind(_this);
         return _this;
     }
 
@@ -60,7 +56,7 @@ var Timer = function (_React$Component) {
                     React.createElement(
                         "span",
                         { className: "timer__digit" },
-                        this.state.minutes
+                        this.addLeadingZeroes(this.state.minutes)
                     ),
                     React.createElement(
                         "span",
@@ -70,17 +66,17 @@ var Timer = function (_React$Component) {
                     React.createElement(
                         "span",
                         { className: "timer__digit" },
-                        this.state.seconds
+                        this.addLeadingZeroes(this.state.seconds)
                     )
                 ),
                 React.createElement(
                     "button",
-                    { className: "btn timer__btn timer__btn--start", onClick: this.start },
+                    { className: "btn timer__btn timer__btn--start", onClick: this.start.bind(this) },
                     "Start"
                 ),
                 React.createElement(
                     "button",
-                    { className: "btn timer__btn timer__btn--stop", onClick: this.stop },
+                    { className: "btn timer__btn timer__btn--stop", onClick: this.stop.bind(this) },
                     "Stop"
                 )
             );
@@ -90,10 +86,19 @@ var Timer = function (_React$Component) {
         value: function start() {
             var _this2 = this;
 
+            var secsPerMin = 60;
+
             var timer = setInterval(function () {
                 _this2.setState({
                     seconds: _this2.state.seconds + 1
                 });
+
+                if (_this2.state.seconds === secsPerMin) {
+                    _this2.setState({
+                        seconds: 0,
+                        minutes: _this2.state.minutes + 1
+                    });
+                }
             }, 1000);
 
             this.setState({
@@ -104,6 +109,27 @@ var Timer = function (_React$Component) {
         key: "stop",
         value: function stop() {
             clearInterval(this.state.timer);
+        }
+    }, {
+        key: "reset",
+        value: function reset() {
+            this.stop();
+
+            this.setState({
+                seconds: 0,
+                minutes: 0
+            });
+        }
+    }, {
+        key: "addLeadingZeroes",
+        value: function addLeadingZeroes(num) {
+            var numStr = num.toString();
+
+            if (num >= 0 && num < 10) {
+                numStr = "0" + numStr;
+            }
+
+            return numStr;
         }
     }]);
 
