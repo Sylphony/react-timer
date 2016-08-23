@@ -9,6 +9,12 @@ class Timer extends React.Component {
         };
     }
 
+    componentDidMount() {
+        this.setState({
+            startDisabled: false
+        });
+    }
+
     componentWillUnmount() {
         this.stop();
     }
@@ -25,7 +31,7 @@ class Timer extends React.Component {
                 </div>
 
                 <div className="timer__controls">
-                    <button className="timer__btn timer__btn--start" onClick={ this.start.bind(this) }>
+                    <button className="timer__btn timer__btn--start" disabled={this.state.startDisabled ? "disabled" : ""} onClick={ this.start.bind(this) }>
                         <span className="timer__btn-icon fa fa-play"></span>
                         <span className="timer__btn-text">Start</span>
                     </button>
@@ -48,7 +54,7 @@ class Timer extends React.Component {
 
         let timer = setInterval(() => {
             this.setState({
-                seconds: this.state.seconds + 1
+                seconds: this.state.seconds + 1,
             });
 
             if (this.state.seconds === secsPerMin) {
@@ -68,12 +74,17 @@ class Timer extends React.Component {
         }, 1000);
 
         this.setState({
-            timer: timer
+            timer: timer,
+            startDisabled: true
         });
     }
 
     stop() {
         clearInterval(this.state.timer);
+
+        this.setState({
+            startDisabled: false
+        });
     }
 
     reset() {

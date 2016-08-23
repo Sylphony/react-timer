@@ -39,6 +39,8 @@
 
         &:disabled {
             color:map-get($colors, gray-light);
+
+            border-color:map-get($colors, gray-light);
         }
 
         &-text {

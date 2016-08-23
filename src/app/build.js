@@ -41,6 +41,13 @@ var Timer = function (_React$Component) {
     }
 
     _createClass(Timer, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            this.setState({
+                startDisabled: false
+            });
+        }
+    }, {
         key: "componentWillUnmount",
         value: function componentWillUnmount() {
             this.stop();
@@ -85,7 +92,7 @@ var Timer = function (_React$Component) {
                     { className: "timer__controls" },
                     React.createElement(
                         "button",
-                        { className: "timer__btn timer__btn--start", onClick: this.start.bind(this) },
+                        { className: "timer__btn timer__btn--start", disabled: this.state.startDisabled ? "disabled" : "", onClick: this.start.bind(this) },
                         React.createElement("span", { className: "timer__btn-icon fa fa-play" }),
                         React.createElement(
                             "span",
@@ -123,6 +130,7 @@ var Timer = function (_React$Component) {
 
             var secsPerMin = 60;
             var minsPerHour = 60;
+            console.log("Pressed");
 
             var timer = setInterval(function () {
                 _this2.setState({
@@ -146,13 +154,18 @@ var Timer = function (_React$Component) {
             }, 1000);
 
             this.setState({
-                timer: timer
+                timer: timer,
+                startDisabled: true
             });
         }
     }, {
         key: "stop",
         value: function stop() {
             clearInterval(this.state.timer);
+
+            this.setState({
+                startDisabled: false
+            });
         }
     }, {
         key: "reset",

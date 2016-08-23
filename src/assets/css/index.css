@@ -2896,7 +2896,8 @@ button {
 }
 
 .timer__btn:disabled {
-  color: #e1e1e1;
+  color: #eeeeee;
+  border-color: #eeeeee;
 }
 
 .timer__btn-text {
