@@ -54,7 +54,7 @@ class Timer extends React.Component {
 
         let timer = setInterval(() => {
             this.setState({
-                seconds: this.state.seconds + 1,
+                seconds: this.state.seconds + 1
             });
 
             if (this.state.seconds === secsPerMin) {
@@ -97,12 +97,17 @@ class Timer extends React.Component {
         });
     }
 
-    addLeadingZeroes(num) {
+    addLeadingZeroes(num, numZeroes = 1, numDigits = 2) {
         let numStr = num.toString();
 
-        if (num >= 0 && num < 10) {
-            numStr = "0" + numStr;
+        if (num >= 0) {
+            for (let count = 0; count < numZeroes; count++) {
+                numStr = "0" + numStr;
+            }
         }
+
+        // Format to number of digits wanted
+        numStr = numStr.slice(-1 * numDigits);
 
         return numStr;
     }

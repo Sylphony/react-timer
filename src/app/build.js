@@ -130,7 +130,6 @@ var Timer = function (_React$Component) {
 
             var secsPerMin = 60;
             var minsPerHour = 60;
-            console.log("Pressed");
 
             var timer = setInterval(function () {
                 _this2.setState({
@@ -181,11 +180,19 @@ var Timer = function (_React$Component) {
     }, {
         key: "addLeadingZeroes",
         value: function addLeadingZeroes(num) {
+            var numZeroes = arguments.length <= 1 || arguments[1] === undefined ? 1 : arguments[1];
+            var numDigits = arguments.length <= 2 || arguments[2] === undefined ? 2 : arguments[2];
+
             var numStr = num.toString();
 
-            if (num >= 0 && num < 10) {
-                numStr = "0" + numStr;
+            if (num >= 0) {
+                for (var count = 0; count < numZeroes; count++) {
+                    numStr = "0" + numStr;
+                }
             }
+
+            // Format to number of digits wanted
+            numStr = numStr.slice(-1 * numDigits);
 
             return numStr;
         }
