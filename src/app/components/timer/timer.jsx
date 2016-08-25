@@ -1,3 +1,5 @@
+import TimerCtrlBtn from "./TimerCtrlBtn.jsx";
+
 class Timer extends React.Component {
     constructor(state) {
         super(state);
@@ -31,18 +33,9 @@ class Timer extends React.Component {
                 </div>
 
                 <div className="timer__controls">
-                    <button className="timer__btn timer__btn--start" disabled={this.state.startDisabled ? "disabled" : ""} onClick={ this.start.bind(this) }>
-                        <span className="timer__btn-icon fa fa-play"></span>
-                        <span className="timer__btn-text">Start</span>
-                    </button>
-                    <button className="timer__btn timer__btn--stop" onClick={ this.stop.bind(this) }>
-                        <span className="timer__btn-icon fa fa-stop"></span>
-                        <span className="timer__btn-text">Stop</span>
-                    </button>
-                    <button className="timer__btn timer__btn--reset" onClick={ this.reset.bind(this) }>
-                        <span className="timer__btn-icon fa fa-refresh"></span>
-                        <span className="timer__btn-text">Reset</span>
-                    </button>
+                    <TimerCtrlBtn type="start" icon="play" action={ this.start.bind(this) } />
+                    <TimerCtrlBtn type="stop" icon="stop" action={ this.stop.bind(this) } />
+                    <TimerCtrlBtn type="reset" icon="refresh" action={ this.reset.bind(this) } />
                 </div>
             </div>
         );

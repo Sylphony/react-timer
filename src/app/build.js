@@ -1,15 +1,65 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/*!
+  Copyright (c) 2016 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg)) {
+				classes.push(classNames.apply(null, arg));
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if (typeof module !== 'undefined' && module.exports) {
+		module.exports = classNames;
+	} else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
+		// register as 'classnames', consistent with npm package name
+		define('classnames', [], function () {
+			return classNames;
+		});
+	} else {
+		window.classNames = classNames;
+	}
+}());
+
+},{}],2:[function(require,module,exports){
 "use strict";
 
-var _timer = require("./components/timer/timer.jsx");
+var _Timer = require("./components/timer/Timer.jsx");
 
-var _timer2 = _interopRequireDefault(_timer);
+var _Timer2 = _interopRequireDefault(_Timer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-ReactDOM.render(React.createElement(_timer2.default, null), document.getElementById("app"));
+ReactDOM.render(React.createElement(_Timer2.default, null), document.getElementById("app"));
 
-},{"./components/timer/timer.jsx":2}],2:[function(require,module,exports){
+},{"./components/timer/Timer.jsx":3}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -17,6 +67,12 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _TimerCtrlBtn = require("./TimerCtrlBtn.jsx");
+
+var _TimerCtrlBtn2 = _interopRequireDefault(_TimerCtrlBtn);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -90,36 +146,9 @@ var Timer = function (_React$Component) {
                 React.createElement(
                     "div",
                     { className: "timer__controls" },
-                    React.createElement(
-                        "button",
-                        { className: "timer__btn timer__btn--start", disabled: this.state.startDisabled ? "disabled" : "", onClick: this.start.bind(this) },
-                        React.createElement("span", { className: "timer__btn-icon fa fa-play" }),
-                        React.createElement(
-                            "span",
-                            { className: "timer__btn-text" },
-                            "Start"
-                        )
-                    ),
-                    React.createElement(
-                        "button",
-                        { className: "timer__btn timer__btn--stop", onClick: this.stop.bind(this) },
-                        React.createElement("span", { className: "timer__btn-icon fa fa-stop" }),
-                        React.createElement(
-                            "span",
-                            { className: "timer__btn-text" },
-                            "Stop"
-                        )
-                    ),
-                    React.createElement(
-                        "button",
-                        { className: "timer__btn timer__btn--reset", onClick: this.reset.bind(this) },
-                        React.createElement("span", { className: "timer__btn-icon fa fa-refresh" }),
-                        React.createElement(
-                            "span",
-                            { className: "timer__btn-text" },
-                            "Reset"
-                        )
-                    )
+                    React.createElement(_TimerCtrlBtn2.default, { type: "start", icon: "play", action: this.start.bind(this) }),
+                    React.createElement(_TimerCtrlBtn2.default, { type: "stop", icon: "stop", action: this.stop.bind(this) }),
+                    React.createElement(_TimerCtrlBtn2.default, { type: "reset", icon: "refresh", action: this.reset.bind(this) })
                 )
             );
         }
@@ -203,4 +232,61 @@ var Timer = function (_React$Component) {
 
 exports.default = Timer;
 
-},{}]},{},[1]);
+},{"./TimerCtrlBtn.jsx":4}],4:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var classNames = require("classnames");
+
+var TimerCtrlBtn = function (_React$Component) {
+    _inherits(TimerCtrlBtn, _React$Component);
+
+    function TimerCtrlBtn() {
+        _classCallCheck(this, TimerCtrlBtn);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(TimerCtrlBtn).apply(this, arguments));
+    }
+
+    _createClass(TimerCtrlBtn, [{
+        key: "render",
+        value: function render() {
+            var btnType = this.props.type;
+            var btnIcon = this.props.icon;
+            var btnAction = this.props.action;
+
+            var classPrefix = "timer__btn";
+
+            var btnClass = classNames([classPrefix, classPrefix + "--" + btnType]);
+
+            var btnIconClass = classNames([classPrefix + "-icon", "fa", "fa-" + btnIcon]);
+
+            return React.createElement(
+                "button",
+                { className: btnClass, onClick: btnAction },
+                React.createElement("span", { className: btnIconClass }),
+                React.createElement(
+                    "span",
+                    { className: "timer__btn-text" },
+                    btnType
+                )
+            );
+        }
+    }]);
+
+    return TimerCtrlBtn;
+}(React.Component);
+
+exports.default = TimerCtrlBtn;
+
+},{"classnames":1}]},{},[2]);
