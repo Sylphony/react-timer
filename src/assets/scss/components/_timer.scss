@@ -23,11 +23,10 @@
         height:120px;
         margin:0 10px;
 
-        color:map-get($colors, gray);
-        font-size:map-get($font-sizes, medium);
-
         border-color:map-get($colors, gray);
         border-radius:50%;
+
+        color:map-get($colors, gray);
 
         transition:color 0.25s ease-out, background-color 0.25s ease-out;
 
@@ -45,6 +44,9 @@
 
         &-text {
             display:block;
+
+            font-size:map-get($font-sizes, medium);
+            text-transform:capitalize;
         }
 
         &-icon {
@@ -52,7 +54,6 @@
             height:60px;
 
             line-height:60px;
-
             font-size:map-get($font-sizes, large);
         }
     }

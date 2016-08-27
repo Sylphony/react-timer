@@ -2883,10 +2883,9 @@ button {
   width: 120px;
   height: 120px;
   margin: 0 10px;
-  color: #AEAEAE;
-  font-size: 1rem;
   border-color: #AEAEAE;
   border-radius: 50%;
+  color: #AEAEAE;
   transition: color 0.25s ease-out, background-color 0.25s ease-out;
 }
 
@@ -2902,6 +2901,8 @@ button {
 
 .timer__btn-text {
   display: block;
+  font-size: 1rem;
+  text-transform: capitalize;
 }
 
 .timer__btn-icon {

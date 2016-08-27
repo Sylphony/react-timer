@@ -33,9 +33,9 @@ class Timer extends React.Component {
                 </div>
 
                 <div className="timer__controls">
-                    <TimerCtrlBtn type="start" icon="play" action={ this.start.bind(this) } />
-                    <TimerCtrlBtn type="stop" icon="stop" action={ this.stop.bind(this) } />
-                    <TimerCtrlBtn type="reset" icon="refresh" action={ this.reset.bind(this) } />
+                    <TimerCtrlBtn type="start" icon="play" click={ this.start.bind(this) } disabled={ this.state.startDisabled } />
+                    <TimerCtrlBtn type="stop" icon="stop" click={ this.stop.bind(this) } />
+                    <TimerCtrlBtn type="reset" icon="refresh" click={ this.reset.bind(this) } />
                 </div>
             </div>
         );

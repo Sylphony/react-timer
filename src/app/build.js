@@ -146,9 +146,9 @@ var Timer = function (_React$Component) {
                 React.createElement(
                     "div",
                     { className: "timer__controls" },
-                    React.createElement(_TimerCtrlBtn2.default, { type: "start", icon: "play", action: this.start.bind(this) }),
-                    React.createElement(_TimerCtrlBtn2.default, { type: "stop", icon: "stop", action: this.stop.bind(this) }),
-                    React.createElement(_TimerCtrlBtn2.default, { type: "reset", icon: "refresh", action: this.reset.bind(this) })
+                    React.createElement(_TimerCtrlBtn2.default, { type: "start", icon: "play", click: this.start.bind(this), disabled: this.state.startDisabled }),
+                    React.createElement(_TimerCtrlBtn2.default, { type: "stop", icon: "stop", click: this.stop.bind(this) }),
+                    React.createElement(_TimerCtrlBtn2.default, { type: "reset", icon: "refresh", click: this.reset.bind(this) })
                 )
             );
         }
@@ -261,24 +261,25 @@ var TimerCtrlBtn = function (_React$Component) {
     _createClass(TimerCtrlBtn, [{
         key: "render",
         value: function render() {
-            var btnType = this.props.type;
-            var btnIcon = this.props.icon;
-            var btnAction = this.props.action;
-
             var classPrefix = "timer__btn";
 
-            var btnClass = classNames([classPrefix, classPrefix + "--" + btnType]);
-
-            var btnIconClass = classNames([classPrefix + "-icon", "fa", "fa-" + btnIcon]);
+            var btnProp = {
+                type: this.props.type,
+                icon: this.props.icon,
+                click: this.props.click,
+                className: classNames([classPrefix, classPrefix + "--" + this.props.type]),
+                iconClassName: classNames([classPrefix + "-icon", "fa", "fa-" + this.props.icon]),
+                disabled: this.props.disabled || false
+            };
 
             return React.createElement(
                 "button",
-                { className: btnClass, onClick: btnAction },
-                React.createElement("span", { className: btnIconClass }),
+                { className: btnProp.className, onClick: btnProp.click, disabled: btnProp.disabled },
+                React.createElement("span", { className: btnProp.iconClassName }),
                 React.createElement(
                     "span",
                     { className: "timer__btn-text" },
-                    btnType
+                    btnProp.type
                 )
             );
         }
