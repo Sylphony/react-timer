@@ -1,6 +1,7 @@
 var gulp =          require("gulp"),
     sass =          require("gulp-sass"),
-    autoprefixer =  require("gulp-autoprefixer");
+    autoprefixer =  require("gulp-autoprefixer"),
+    eslint =        require("gulp-eslint");
     // concat =        require("gulp-concat"),
     // uglify =        require("gulp-uglify"),
     // preprocess =    require("gulp-preprocess"),
@@ -22,6 +23,14 @@ var folderPath = {
     app: "app/",
     php: "php/"
 };
+
+// ESLint
+function lint(fileName, fileExt) {
+    return gulp.src(basePath.src + folderPath.app + fileName + fileExt)
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
+}
 
 // SCSS compile
 function scssCompile(fileName) {
@@ -130,6 +139,11 @@ function preprocessTpl(destFolder, mode) {
 
 
 /* ------------ Development tasks ------------ */
+// ESLint
+gulp.task("eslint", function() {
+    return lint("**/*", ".jsx");
+});
+
 // Compile SCSS
 gulp
     .task("scssCompileAboveFold", function() {
