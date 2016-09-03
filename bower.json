@@ -18,7 +18,7 @@
   ],
   "dependencies": {
     "bootstrap": "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css",
-    "react": "https://npmcdn.com/react@15.3.0/dist/react.js",
-    "react-dom": "https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"
+    "react": "https://unpkg.com/react@15.3.0/dist/react.js",
+    "react-dom": "https://unpkg.com/react-dom@15.3.0/dist/react-dom.js"
   }
 }

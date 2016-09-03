@@ -4,7 +4,7 @@
     "Content-Type": "application/javascript; charset=utf-8"
   },
   "main": "index.js",
-  "_source": "https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js",
+  "_source": "https://unpkg.com/react-dom@15.3.0/dist/react-dom.js",
   "_target": "*",
-  "_originalSource": "https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"
+  "_originalSource": "https://unpkg.com/react-dom@15.3.0/dist/react-dom.js"
 }
